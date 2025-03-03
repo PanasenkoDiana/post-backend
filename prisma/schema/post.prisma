@@ -1,0 +1,9 @@
+model Post {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  author      String
+  date        DateTime @default(now())
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+}
