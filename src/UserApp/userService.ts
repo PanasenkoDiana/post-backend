@@ -5,7 +5,7 @@ import { User } from "./types";
 import { sign } from "jsonwebtoken";
 import { SECRET_KEY } from "../config/token";
 import { compare, hash } from "bcryptjs"
-
+// ну и комменты наши можно в принципе убрать
 async function authUser(email: string, password: string): Promise< IError | ISuccess<string> > {
     let user = await userRepository.findUserByEmail(email);
     // if (user){

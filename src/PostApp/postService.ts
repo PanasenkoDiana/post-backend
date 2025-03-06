@@ -1,3 +1,5 @@
+// не понял, почему тут копия репо?
+
 import { PrismaClient } from '@prisma/client'
 
 const Prisma = new PrismaClient()

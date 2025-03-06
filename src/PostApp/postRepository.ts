@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-
+// из client надо импортировать
 const Prisma = new PrismaClient()
 
 async function getAllPosts() {
@@ -47,6 +47,7 @@ async function getPostsByCategory(categoryId: number) {
         return posts
     } catch (error) {
         console.error("Error getPostsByCategory: ", error)
+        // тут throw а выше нет. Делай все репо под один стиль
         throw error
     }
 }

@@ -2,6 +2,7 @@ import { Prisma } from "@prisma/client";
 import client from "../client/prismaClient";
 
 import { IErrors, errors } from "../config/errorCodes"
+// Импорт не используется, нужно убрать
 import { IError } from "../types/types"
 import { User, CreateUser } from "./types"
 

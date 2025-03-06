@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express'
 import userService from './userService'
 import { SECRET_KEY } from '../config/token'
 import { sign } from 'jsonwebtoken'
-
+// ну если с шаблонизатором вообще не работаешь, то такие контроллеры лучше удалить в принципе
 function login(req: Request, res: Response){
     res.render('login')
 }

@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import postsService from "./postService"
 
 async function getAllPosts(req: Request, res: Response) {
+    // это не контексты
     const context = await postsService.getAllPosts()
     res.json(context)
 }
