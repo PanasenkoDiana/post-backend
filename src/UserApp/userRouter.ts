@@ -1,18 +1,12 @@
-// const express = require('express')
-// const router = express.Router()
-// const productController = require('../controllers/productController')
-// router.get('/all', productController.getAllProducts)
-// router.get('/:id', productController.getProductById)
-// router.post('/create', productController.createProduct)
-// module.exports = router
+import { authTokenMiddleware } from '../middlewares/authTokenMiddleware';
 import userControllers from './userController';
-import {Router} from 'express';
+import { Router } from 'express';
 
 const router = Router();
 
-router.post('/login', userControllers.authUser)
-router.get('/login', userControllers.login)
-router.post('/registration', userControllers.registerUser)
-router.get('/registration', userControllers.registration)
+router.post('/login', userControllers.userController.authUser)
+router.post('/register', userControllers.userController.registerUser)
+
+router.get("/me", authTokenMiddleware, userControllers.userControllerApi.getUserById)
 
 export default router;

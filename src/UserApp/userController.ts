@@ -3,46 +3,45 @@ import userService from './userService'
 import { SECRET_KEY } from '../config/token'
 import { sign } from 'jsonwebtoken'
 
-function login(req: Request, res: Response){
+function login(req: Request, res: Response) {
     res.render('login')
 }
 
-function registration(req: Request, res: Response){
+function registration(req: Request, res: Response) {
     res.render('registration')
 }
 
-async function authUser(req: Request, res: Response){
-    // console.log(req.body)
-    // // метод cookie отправляет специальный заголовок Set-Cookie
-    // res.cookie('user', req.body.email)
-    // res.sendStatus(200)
-
+async function authUser(req: Request, res: Response) {
     const data = req.body
     const result = await userService.authUser(data.email, data.password)
     
-    if (result.status == 'error'){
+    if (result.status == 'error') {
         res.send(result.message)
         return
     }
-
 
     res.cookie('token', result.data)
     res.sendStatus(200)
 }
 
-async function registerUser(req: Request, res: Response){
+async function registerUser(req: Request, res: Response) {
     const data = req.body
     const result = await userService.registerUser(data)
-    if (result.status == 'error'){
+    if (result.status == 'error') {
         res.send(result.message)
         return
     }
-    
+
     res.cookie('token', result.data)
     res.sendStatus(200)
 }
 
+async function getUserById(req: Request, res: Response) {
+    const id = res.locals.userId
+    const result = await userService.getUserById(id)
 
+    res.json(result)
+}
 
 const userController = {
     login: login,
@@ -51,4 +50,10 @@ const userController = {
     registerUser: registerUser,
 }
 
-export default userController
+const userControllerApi = {
+    authUser: authUser,
+    registerUser: registerUser,
+    getUserById: getUserById
+}
+
+export default { userController, userControllerApi }

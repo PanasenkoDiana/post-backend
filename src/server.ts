@@ -16,7 +16,7 @@ app.use(express.json())
 
 app.use("/api", postRouter)
 app.use("/api", categoryRouter)
-app.use("/api", userRouter)
+app.use("/api/user", userRouter)
 
 
 app.listen(PORT, HOST, () => {
